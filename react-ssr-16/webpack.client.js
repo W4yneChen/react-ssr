@@ -1,5 +1,4 @@
 const path = require('path');
-const webpackNodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: './client/index.js',
@@ -7,10 +6,14 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, "dist/public"),
   },
+  resolve: {
+    // resove.extensions 用于按给定的后缀名顺序解析文件后缀名
+    extensions: ['.jsx', '.js'],
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
