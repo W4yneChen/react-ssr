@@ -1,5 +1,4 @@
 import Koa from 'koa';
-import Router from '@koa/router';
 import Static from 'koa-static';
 import * as path from 'path'
 
@@ -8,11 +7,12 @@ import { renderToString } from 'react-dom/server';
 import { App } from '../components';
  
 const app = new Koa();
-const router = new Router();
 
+// 文件执行时 __dirname 的值为 dist/build
+// 原因：server/index.js 会被编译成 dist/build/bundle.js 再执行
 app.use(Static(path.join(__dirname, '../public')));
 
-router.get('/', (ctx, next) => {
+app.use(ctx => {
   const content = renderToString(<App />);
   ctx.body = `
     <html>
@@ -23,8 +23,6 @@ router.get('/', (ctx, next) => {
       </body>
     </html>
   `;
-});
-
-app.use(router.routes()).use(router.allowedMethods());
+})
 
 app.listen(3000);
