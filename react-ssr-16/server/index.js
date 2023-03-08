@@ -16,13 +16,17 @@ app.use(ctx => {
   const content = renderToString(<App />);
   ctx.body = `
     <html>
-      <head></head>
+      <head>
+        <meta charset="utf-8">
+        <title>React SSR</title>
+      </head>
       <body>
         <div id="root">${content}</div>
         <script src="bundle.js"></script>
       </body>
     </html>
   `;
-})
+});
 
 app.listen(3000);
+
