@@ -1,10 +1,13 @@
 {
-  "name": "react-ssr-18",
+  "name": "react-16-ssr",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm-run-all --parallel dev:server dev:build:*",
+    "dev:server": "nodemon --inspect dist/build/bundle.js",
+    "dev:build:server": "webpack --mode development --config webpack.server.js --watch",
+    "dev:build:client": "webpack --mode development --config webpack.client.js --watch"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +24,9 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
-    "@koa/router": "^12.0.0",
     "koa": "^2.14.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "koa-static": "^5.0.0",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   }
 }
