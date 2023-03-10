@@ -4,7 +4,7 @@ module.exports = {
   entry: './client/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, "dist/public"),
+    path: path.resolve(__dirname, 'dist/public'),
   },
   resolve: {
     // resove.extensions 用于按给定的后缀名顺序解析文件后缀名
